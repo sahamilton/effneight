@@ -125,7 +125,7 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
-    'fontawesome' = env('FONTAWESOME_KIT')
+    'fontawesome' = env('FONTAWESOME_KIT'),
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
