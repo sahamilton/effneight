@@ -126,6 +126,7 @@ return [
     'cipher' => 'AES-256-CBC',
 
     'fontawesome' =>env('FONTAWESOME_KIT'),
+    'google_api' =>env('GOOGLE_API', 'AIzaSyC5GUlsLwW3cH2vuXeQfpagQgSOcnp8Nbo'),
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
