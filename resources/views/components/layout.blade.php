@@ -11,7 +11,7 @@
         <!-- Styles -->
         <link rel="stylesheet" href="{{asset('css/app.css')}}" />
        
-            
+        @livewireStyles
 
         <script src="https://kit.fontawesome.com/{{config('app.fontawesome')}}.js" crossorigin="anonymous"></script>
         <style>
@@ -19,10 +19,14 @@
                 font-family: 'Nunito', sans-serif;
             }
         </style>
-
-        @yield('scripts')    </head>
+        <script
+          src="https://maps.googleapis.com/maps/api/js?key={{config('app.google_api')}}&callback=initMap&v=weekly&channel=2"
+          async
+        ></script>
+        @yield('scripts')
+    </head>
     <body class="antialiased">
-        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+        <div >
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
@@ -39,6 +43,11 @@
             {{ $slot }}
             
         </div>
+        @livewireScripts
+
+
+
+    
     </body>
         
 </html>

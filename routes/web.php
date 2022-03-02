@@ -18,11 +18,8 @@ Route::get(
         return view('welcome');
     }
 );
-Route::get(
-    '/maps', function () {
-        return view('maps');
-    }
-);
+Route::get('/maps', ['as'=>'maps.api', 'uses'=>'App\Http\Controllers\AddressController@index']);
+
 Route::get(
     '/dashboard', function () {
         return view('dashboard');
