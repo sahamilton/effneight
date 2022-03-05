@@ -4,7 +4,7 @@
    
     <x-form-select wire:model='limit' name="limit" :options="$limits" />
    
-    <div id="map" style="width: 60%; height: 600px;"></div>
+    <div wire:ignore id="map" style="width: 60%; height: 600px;"></div>
 
     <script>
         const myLatLng = { lat: 38.22632, lng: -122.638035 }

@@ -19,11 +19,8 @@
                 font-family: 'Nunito', sans-serif;
             }
         </style>
-        <script
-          src="https://maps.googleapis.com/maps/api/js?key={{config('app.google_api')}}&callback=initMap&v=weekly&channel=2"
-          async
-        ></script>
-        @yield('scripts')
+       
+       
     </head>
     <body class="antialiased">
         <div >
@@ -44,7 +41,7 @@
             
         </div>
         @livewireScripts
-
+        @stack('scripts')
 
 
     
