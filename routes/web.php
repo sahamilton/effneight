@@ -18,34 +18,11 @@ Route::get(
         return view('welcome');
     }
 );
-
-Route::get(
-    '/calendar', function () {
-        return view('calendar');
-    }
-);
-
-Route::get(
-    'calendar/events', function (
-        \Illuminate\Http\Request $request
-    ) {
-        
-
-        $eventsList = App\Models\Activity::all();
-        foreach ($eventsList as $event) {
-            $events[] = [
-                'id' => $event->id,
-                'title' => $event->id. " Event",
-                'start' => $event->activity_date->toDateString(),
-            ];
-        }
-
-        return $events;
-        
-    }
-);
+Route::get('/calendar/events', ['as'=>'branch.calendar', 'uses'=> 'App\Http\Controllers\CalendarController@events']);
+Route::get('/calendar', ['as'=>'calendar.index', 'uses'=> 'App\Http\Controllers\CalendarController@index']);
 Route::get('/maps', ['as'=>'maps.api', 'uses'=>'App\Http\Controllers\AddressController@index']);
-
+Route::resource('/activity', 'App\Http\Controllers\ActivitiesController');
+Route::resource('/address', 'App\Http\Controllers\AddressController');
 Route::get(
     '/dashboard', function () {
         return view('dashboard');

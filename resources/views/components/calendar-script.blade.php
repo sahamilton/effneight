@@ -7,8 +7,7 @@
 
         
         var calendarEl = document.getElementById('calendar');
-        var checkbox = document.getElementById('drop-remove');
-
+        
         // initialize the calendar
         // -----------------------------------------------------------------
 
@@ -18,13 +17,14 @@
             center: 'title',
             right: 'dayGridMonth,timeGridWeek,timeGridDay'
         },
+        displayEventTime: false,
         editable: true,
         droppable: true, // this allows things to be dropped onto the calendar
         
         eventReceive: info => @this.eventReceive(info.event),
-        eventDrop: info => @this.eventDrop(info.event, info.oldEvent),
+        eventDrop: info => @this.eventDrop(info.event),
         loading: function(isLoading) {
-                if (!isLoading) {
+                if (! isLoading) {
                     // Reset custom events
                     this.getEvents().forEach(function(e){
                         if (e.source === null) {
@@ -32,16 +32,17 @@
                         }
                     });
                 }
-            }
+            } 
         });
-
+        
         calendar.addEventSource( {
-            url: '/calendar/events',
+            url: 'calendar/events',
             extraParams: function() {
                 return {
-                    name: @this.name
+                    branch: @this.branch_id,
+                    type: @this.type,
                 };
-            }
+            } 
         });
 
         calendar.render();
@@ -57,7 +58,16 @@
     <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.3.1/main.min.css' rel='stylesheet' />
 
     <style>
-
+        .hover-end{
+            padding:0;
+            margin:0;
+            font-size:75%;
+            text-align:center;
+            position:absolute;
+            bottom:0;
+            width:100%;
+            opacity:.8}
+            
     
 
     #calendar-container {
