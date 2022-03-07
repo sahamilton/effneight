@@ -8,8 +8,8 @@
    
     
 
-    <div x-data="{
-        markers: {!! $markers !!}
+    <script>
+        let markers: {!! $markers !!}
         init() {
             const myLatLng = { lat: 38.22632, lng: -122.638035 }
             const markers = this.markers
@@ -35,7 +35,7 @@
             }
             google.maps.event.addDomListener(window, 'load', initialize);
         }
-    }">
+    </script>
     
     <div wire:ignore x-ref='map' id="map" style="width: 60%; height: 600px;"></div>
 </div>

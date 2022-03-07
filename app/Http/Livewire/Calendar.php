@@ -3,14 +3,22 @@
 namespace App\Http\Livewire;
 use App\Models\Activity;
 use Livewire\Component;
-
+use Carbon\Carbon;
+use App\Models\PeriodSelector;
 class Calendar extends Component
 {
-  
+    use PeriodSelector;
     public $events = [];
     public $branch_id =1522;
     public $branches;
     public $type = '0';
+    public $status = '0';
+    public $startdate ='2020-04-01';
+    public $setPeriod = 'thisMonth';
+    
+    public $statuses = ['0'=>'All',
+                        '1'=>'Completed',
+                        '2'=>'Not Completed',];
     public $types = [
         '0'=>'All',
         '4'=> 'Sales Appointment',
@@ -24,7 +32,22 @@ class Calendar extends Component
     {
         $this->emit("refreshCalendar");
     }
+    public function updatedSetPeriod()
+    {
+        
+        $this->_setPeriod();
+        ray($this->startdate);
+        $this->emit("refreshCalendar");
+    }
+    public function updatedStartDate()
+    {
+        $this->emit("refreshCalendar");
 
+    }
+    public function updatedStatus()
+    {
+        $this->emit("refreshCalendar");
+    }
     public function updatedType()
     {
         $this->emit("refreshCalendar");
@@ -42,7 +65,8 @@ class Calendar extends Component
 
         ];
         $keys = array_keys($this->branches);
-        //$this->branch_id = reset($keys);
+        $this->_setPeriod();
+        $this->startdate = $this->period['from']->format('Y-m-d');
     }
 
     
@@ -59,14 +83,31 @@ class Calendar extends Component
         }
         $activity->update(
             [
-                'activity_date'=>$event['start'], 
+                'activity_date'=>Carbon::parse($event['start']), 
                 'completed'=>$completed,
             ]
         );
+        
         $this->emit("refreshCalendar");
     }
     public function render()
     {
+        $this->_setPeriod();
+        
+       
         return view('livewire.calendar');
+    }
+
+    /**
+     * [_setPeriod description]
+     *
+     * @return setPeriod
+     */
+    private function _setPeriod()
+    {
+        
+        $this->livewirePeriod($this->setPeriod);
+        $this->startdate = $this->period['from']->format('Y-m-d');     
+        
     }
 }

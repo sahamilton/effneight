@@ -15,12 +15,13 @@
         headerToolbar: {
             left: 'prev,next today',
             center: 'title',
-            right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            right: 'dayGridMonth,timeGridWeek,timeGridDay',
+            
         },
         displayEventTime: false,
         editable: true,
         droppable: true, // this allows things to be dropped onto the calendar
-        
+        initialDate: @this.startdate,
         eventReceive: info => @this.eventReceive(info.event),
         eventDrop: info => @this.eventDrop(info.event),
         loading: function(isLoading) {
@@ -41,6 +42,7 @@
                 return {
                     branch: @this.branch_id,
                     type: @this.type,
+                    status: @this.status,
                 };
             } 
         });
@@ -67,7 +69,7 @@
             bottom:0;
             width:100%;
             opacity:.8}
-            
+
     
 
     #calendar-container {

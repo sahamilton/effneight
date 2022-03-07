@@ -83,6 +83,34 @@ return [
     */
 
     'locale' => 'en',
+    /*
+    |--------------------------------------------------------------------------
+    | Application Timeframes
+    |--------------------------------------------------------------------------
+    |
+    | The time frames used thought the application to limit searches etc.
+    |
+    |
+    */
+
+    'timeframes'=>[
+        'future'=>'Future',
+        'nextWeek'=>'Next Week',
+        'tomorrow'=>'Tomorrow',
+        'today'=>'Today',
+        'yesterday'=>'Yesterday',
+        'thisWeek'=>'This Week',
+       // 'thisWeekToDate'=>'This Week To Date',
+        'lastWeek'=>'Last Week',
+        'thisMonth'=>'This Month',
+       // 'thisMonthToDate'=>'This Month To Date',
+        'lastMonth'=>'Last Month',
+        'thisQuarter'=>'This Quarter',
+       // 'thisQuarterToDate'=>'This Quarter To Date',
+        'lastQuarter'=>'Last Quarter',
+        'lastSixMonths'=>'Last Six Months',
+
+    ],
 
     /*
     |--------------------------------------------------------------------------

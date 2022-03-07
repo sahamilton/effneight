@@ -35,7 +35,7 @@ class EventTransformer extends TransformerAbstract
         $title = '';
         
         $activity->relatesToAddress ? $title.=" " .$activity->relatesToAddress->businessname : $title.=' No Name';
-        ray($title);
+      
         return [
             'id'      => (int) $activity->id,
             'title'   => $title,
@@ -44,9 +44,9 @@ class EventTransformer extends TransformerAbstract
             'allDay' => true,
             'type_id'=>$activity->type->id,
             'borderColor' => '#'.$activity->type->color,
-            'color'=> $activity->completed ? '#cccccc' : '#ff0000',
+            'color'=> $activity->completed ? '#cccccc' : '#cceecc',
             'textColor'=>'#000000',
-            'start'   => $activity->activity_date,
+            'start'   => $activity->activity_date->format('Y-m-d'),
             'completed' => $activity->completed ? '1' : '0',
 
         ];

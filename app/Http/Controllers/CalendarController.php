@@ -86,21 +86,31 @@ class CalendarController extends Controller
 
     public function events(Request $request)
     {
-       
+        ray(request('start'));
         $activities = Activity::where('branch_id', request('branch'))
             ->whereBetween('activity_date', [request('start'),request('end')])
             ->when(
-                $request->type !=0, function ($q) use ($request) {
+                $request->type != 0, function ($q) use ($request) {
                     $q->where('activitytype_id', $request->type);
                 }
             )
+            ->when(
+                $request->status != 0, function ($q) use ($request) {
+                    $q->when($request->status == 1, function ($q) {
+                        $q->whereNotNull('completed');
+
+                    }, function ($q) {
+                        $q->whereNull('completed');
+                    });
+                        
+                }
+            )
             ->get();
-        ;
         $events =[];
         $activities = \Fractal::create()->collection($activities)
             ->transformWith(EventTransformer::class)
             ->toArray();
-        ray($activities['data']);
+        
         return $activities['data'];
         
     }
