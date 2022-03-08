@@ -35,7 +35,7 @@ class AddressMarkerTransformer extends TransformerAbstract
         $type = $this->_getAddressType($address);
         return [
             'id' => (int) $address->id,
-            'type' => $type,
+            'type' => 'customer',
             'businessname' => $address->businessname, 
             
             'lat' => $address->lat, 

@@ -10,7 +10,7 @@
               zoom: 10,
               mapTypeId: google.maps.MapTypeId.ROADMAP
           });
-         let markers =  JSON.parse( @this.markers) 
+          let markers =  JSON.parse( @this.markers) 
         
           for (var i = 0, length = markers.length; i < length; i++) {
                 var data = markers[i],
@@ -18,12 +18,30 @@
                 var marker = new google.maps.Marker({
                       position: latLng,
                       map: map,
-                      title: data.businessname
+                      title: data.businessname,
+                      icon: {
+                        url: getIcon(data.type)
+                      }
                     }
                 );
             }
 
             
+        }
+
+        function getIcon(type) {
+          switch(type) {
+            case 'customer':
+               var color ='green'
+              break;
+            case 'lead':
+               var color = 'red'
+              break;
+            default:
+              var color = 'green'
+              break;
+        }
+          return "http://maps.google.com/mapfiles/ms/icons/" + color + "-dot.png"
         }
         
         @this.on(`refreshMap`, () => {
@@ -32,6 +50,6 @@
             
             
         });
-        });
-        //google.maps.event.addDomListener(window, 'load', initialize);
-    </script>
+    });
+    //google.maps.event.addDomListener(window, 'load', initialize);
+</script>

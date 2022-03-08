@@ -1,1 +1,1 @@
-<img width= '200px' src = "{{asset('cclogoLg.png')}}" />
+<img width= '200px' src = "{{asset('prlogo.png')}}" />
