@@ -156,6 +156,7 @@ return [
     'cipher' => 'AES-256-CBC',
 
     'fontawesome' =>env('FONTAWESOME_KIT'),
+
     'google_api' =>env('GOOGLE_API'),
     /*
     |--------------------------------------------------------------------------
@@ -222,8 +223,10 @@ return [
     |
     */
 
-    'aliases' => Facade::defaultAliases()->merge([
+    'aliases' => Facade::defaultAliases()->merge(
+        [
         // ...
-    ])->toArray(),
+        ]
+    )->toArray(),
 
 ];

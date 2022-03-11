@@ -35,7 +35,7 @@ class MapView extends Component
                 'limits'=>[1=>1,5=>5,10=>10,25=>25,50=>50],
                 'addresses' => Address::nearby($this->me, $this->limit)
                 ->orderBy('distance')
-                            ->paginate($this->perPage),
+                ->paginate($this->perPage),
                 'lat'=>$this->me->lat, 
                 'lng'=> $this->me->lng,
             ]
