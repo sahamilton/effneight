@@ -83,6 +83,8 @@ return [
     */
 
     'locale' => 'en',
+
+   ' google_api' =>env('GOOGLE_API', 'AIzaSyC5GUlsLwW3cH2vuXeQfpagQgSOcnp8Nbo'),
     /*
     |--------------------------------------------------------------------------
     | Application Timeframes
