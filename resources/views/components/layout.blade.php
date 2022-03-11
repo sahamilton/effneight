@@ -23,7 +23,7 @@
        
     </head>
     <body class="antialiased">
-        <div >
+        <div>
             @if (Route::has('login'))
                 
                 @auth
@@ -34,9 +34,12 @@
                 @endauth
                 
             @endif
+            <div class="px-5">
             {{ $slot }}
-            
+            </div>
         </div>
+        <x-footer />
+
         <script src="{{ asset('js/app.js')}}" defer ></script>
         @livewireScripts
         @stack('scripts')

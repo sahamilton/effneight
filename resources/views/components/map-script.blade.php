@@ -7,11 +7,11 @@
           let map = new google.maps.Map(
             document.getElementById('map'), {
               center: myLatLng,
-              zoom: 10,
+              zoom: @this.zoom,
               mapTypeId: google.maps.MapTypeId.ROADMAP
           });
           let markers =  JSON.parse( @this.markers) 
-        
+          
           for (var i = 0, length = markers.length; i < length; i++) {
                 var data = markers[i],
                 latLng = new google.maps.LatLng(data.lat, data.lng); 
@@ -19,16 +19,22 @@
                       position: latLng,
                       map: map,
                       title: data.businessname,
-                      icon: {
-                        url: getIcon(data.type)
-                      }
+                      
                     }
+
                 );
+                marker.addListener("click", toggleBounce);
             }
 
             
         }
-
+        function toggleBounce() {
+          if (marker.getAnimation() !== null) {
+            marker.setAnimation(null);
+          } else {
+            marker.setAnimation(google.maps.Animation.BOUNCE);
+          }
+        }
         function getIcon(type) {
           switch(type) {
             case 'customer':
