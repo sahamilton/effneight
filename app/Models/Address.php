@@ -11,9 +11,17 @@ class Address extends Model
     public $table = 'addresses';
     public $fillable = ['lat', 'lng'];
 
-    public function sgetFullNameAttribute()
+    public function getFullAddressAttribute()
     {
-        return $this->street . " " . $this->city . " " . $this->state . " " .$this->zip;
+        return $this->street . " <br />" . $this->city . " " . $this->state . " " .$this->zip;
+    }
+
+    public function scopeSearch($query, $search)
+    {
+
+        return  $query->where('businessname', 'like', "%{$search}%")
+            ->Orwhere('street', 'like', "%{$search}%")
+            ->Orwhere('city', 'like', "%{$search}%");
     }
 
 }
